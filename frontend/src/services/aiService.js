@@ -87,3 +87,65 @@ export const evaluateWithAI = async (testName, rawResponses) => {
     throw error;
   }
 };
+
+/**
+ * General Chat for Tactical AI Assistant
+ * @param {string} userMessage 
+ * @param {Array} history - Previous messages for context
+ */
+export const chatWithAI = async (userMessage, history = []) => {
+  const apiKey = localStorage.getItem('GEMINI_API_KEY');
+  
+  if (!apiKey) {
+    throw new Error('API_KEY_MISSING');
+  }
+
+  // Prepend a system-like context to the first message if history is empty
+  const systemPrompt = `
+    You are the "Tactical AI Assistant" for the SSB Training System.
+    Your mission is to mentor SSB (Services Selection Board) aspirants.
+    
+    TONE & STYLE:
+    1. Professional, precise, and encouraging (like a senior officer).
+    2. Use military terminology where appropriate (e.g., "Acknowledged", "Negative", "Mission objective").
+    3. Keep responses concise but highly actionable.
+    
+    KNOWLEDGE FOCUS:
+    - Officer Like Qualities (OLQs).
+    - Strategies for OIR, PPDT, WAT, TAT, SRT, and SDT.
+    - Personal Interview tips and GTO ground task insights.
+    - Encouragement based on "Training hard to serve harder".
+
+    If the user asks something non-military/non-SSB, politely redirect them to focus on their training.
+  `;
+
+  const contents = [
+    { role: 'user', parts: [{ text: systemPrompt }] },
+    { role: 'model', parts: [{ text: "Tactical Assistant systems online. Ready for mission briefing. How can I assist your SSB preparation today?" }] },
+    ...history.map(msg => ({
+      role: msg.sender === 'user' ? 'user' : 'model',
+      parts: [{ text: msg.text }]
+    })),
+    { role: 'user', parts: [{ text: userMessage }] }
+  ];
+
+  try {
+    const res = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      {
+        contents,
+        generationConfig: {
+          temperature: 0.7,
+          topP: 0.8,
+          maxOutputTokens: 500,
+        }
+      }
+    );
+
+    return res.data.candidates[0].content.parts[0].text;
+  } catch (error) {
+    console.error("Chat AI failed:", error);
+    throw error;
+  }
+};
+

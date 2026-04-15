@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Calendar } from 'lucide-react';
+import AIChatAssistant from '../components/AIChatAssistant';
 
 const SSB_DAYS = [
   {
@@ -545,6 +546,9 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+
+      {/* AI Tactical Assistant */}
+      <AIChatAssistant userData={userData} />
     </div>
   );
 }
