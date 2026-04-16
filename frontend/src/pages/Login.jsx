@@ -80,8 +80,8 @@ function HeroSlideshow() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#06120b]/80 via-[#06120b]/30 to-transparent lg:w-3/4" />
 
       {/* Caption + Controls */}
-      <div className="absolute bottom-10 lg:bottom-20 left-6 lg:left-8 right-6 lg:right-8 z-10 flex items-end justify-between gap-4">
-        <p className="text-[10px] text-white/40 font-medium max-w-[50%] lg:max-w-xs leading-relaxed italic">
+      <div className="absolute bottom-6 md:bottom-10 lg:bottom-20 left-4 md:left-6 lg:left-8 right-4 md:right-6 lg:right-8 z-10 flex flex-col md:flex-row items-center md:items-end justify-between gap-4">
+        <p className="text-[9px] md:text-[10px] text-white/40 font-medium max-w-[80vw] md:max-w-xs leading-relaxed italic text-center md:text-left">
           {HERO_IMAGES[current].caption}
         </p>
         <div className="flex items-center gap-2">
@@ -91,7 +91,7 @@ function HeroSlideshow() {
           <div className="flex gap-1.5 mx-2">
             {HERO_IMAGES.map((_, i) => (
               <button key={i} onClick={() => { setFade(false); setTimeout(() => { setCurrent(i); setFade(true); }, 300); }}
-                className={`h-1.5 rounded-full transition-all duration-300 ${i === current ? 'w-8 bg-emerald-500' : 'w-2 bg-white/30'}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === current ? 'w-6 md:w-8 bg-emerald-500' : 'w-1.5 md:w-2 bg-white/30'}`}
               />
             ))}
           </div>
@@ -176,16 +176,16 @@ export default function Login() {
         <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-10 pt-4 pb-16 lg:pb-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
           {/* Left */}
-          <div className="lg:col-span-7 lg:pr-10">
-            <div className="inline-flex items-center gap-3 bg-black/40 border border-emerald-500/30 px-4 py-2 rounded-full mb-8 backdrop-blur-md shadow-xl">
-              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse" />
-              <span className="text-emerald-300 text-xs font-black uppercase tracking-widest">Active Training Platform</span>
+          <div className="lg:col-span-7 lg:pr-10 text-center lg:text-left flex flex-col items-center lg:items-start">
+            <div className="inline-flex items-center gap-3 bg-black/40 border border-emerald-500/30 px-4 py-2 rounded-full mb-6 lg:mb-8 backdrop-blur-md shadow-xl">
+              <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)] animate-pulse" />
+              <span className="text-emerald-300 text-[10px] md:text-xs font-black uppercase tracking-widest">Active Training Platform</span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-[5.5rem] font-black tracking-tighter leading-[0.95] drop-shadow-2xl text-white mb-6 lg:mb-8">
-              THE MAKING<br />OF AN<br />
+            <h1 className="text-4xl md:text-6xl lg:text-[5.5rem] font-black tracking-tighter leading-[1] md:leading-[0.95] drop-shadow-2xl text-white mb-6 lg:mb-8">
+              THE MAKING<br className="hidden md:block" /> OF AN<br />
               <span className="bg-gradient-to-r from-emerald-400 to-amber-400 bg-clip-text text-transparent filter drop-shadow-[0_0_30px_rgba(16,185,129,0.3)]">OFFICER</span>
             </h1>
-            <p className="text-slate-300 text-lg leading-relaxed max-w-lg font-medium border-l-2 border-emerald-500 pl-6">
+            <p className="text-slate-300 text-base md:text-lg leading-relaxed max-w-lg font-medium border-l-2 border-emerald-500 pl-4 md:pl-6 text-left">
               Let’s train. Become a future Lieutenant.
             </p>
           </div>
@@ -364,12 +364,12 @@ export default function Login() {
             <p className="text-slate-400 max-w-2xl mx-auto text-lg">The SSB board evaluates you on these 15 key qualities to determine your potential as a future officer.</p>
           </div>
           <div className="relative max-w-5xl mx-auto mb-32 px-4 lg:px-0">
-            {/* Central Node for Desktop */}
-            <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-44 h-44 rounded-full bg-[#06120b] border-2 border-amber-500/30 shadow-[0_0_40px_rgba(245,158,11,0.15)] flex-col items-center justify-center p-2 text-center group cursor-default">
+            {/* Central Node for All Screens */}
+            <div className="flex lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 z-20 w-36 h-36 md:w-44 md:h-44 rounded-full bg-[#06120b] border-2 border-amber-500/30 shadow-[0_0_40px_rgba(245,158,11,0.15)] flex-col items-center justify-center p-2 text-center group cursor-default mx-auto mb-10 lg:mb-0">
               <div className="absolute inset-0 rounded-full border border-dashed border-amber-500/40 animate-[spin_30s_linear_infinite]" />
               <div className="absolute inset-3 rounded-full bg-gradient-to-br from-amber-500/10 to-transparent" />
-              <img src="https://i.pinimg.com/originals/30/31/a3/3031a322175f31f5ade065c8d1a4d377.jpg" alt="Indian Army Emblem" className="w-20 h-20 object-cover rounded-full mb-2 border border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.4)]" />
-              <div className="relative z-10 text-[11px] font-black uppercase text-white tracking-[0.2em] leading-tight mt-1">
+              <img src="https://i.pinimg.com/originals/30/31/a3/3031a322175f31f5ade065c8d1a4d377.jpg" alt="Indian Army Emblem" className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-full mb-1 md:mb-2 border border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.4)]" />
+              <div className="relative z-10 text-[9px] md:text-[11px] font-black uppercase text-white tracking-[0.2em] leading-tight mt-1">
                 <span className="text-amber-400">Lieutenant</span>
               </div>
             </div>

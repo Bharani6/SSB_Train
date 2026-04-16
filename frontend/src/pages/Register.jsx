@@ -192,7 +192,7 @@ export default function Register() {
 
                   <div>
                     <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-2">Entry Type</label>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {ENTRY_TYPES.map((et) => (
                         <button
                           key={et.value} type="button"
@@ -212,7 +212,7 @@ export default function Register() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block mb-2">
                         Password <span className="text-rose-500">*</span>

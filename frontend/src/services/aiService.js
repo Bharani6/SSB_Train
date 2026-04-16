@@ -47,7 +47,8 @@ export const evaluateWithAI = async (testName, rawResponses) => {
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
             temperature: 0.2, // Low temp for strict grading
-            responseMimeType: "application/json"
+            responseMimeType: "application/json",
+            maxOutputTokens: 1000
         }
       }
     );
@@ -122,7 +123,7 @@ export const chatWithAI = async (userMessage, history = []) => {
   const contents = [
     { role: 'user', parts: [{ text: systemPrompt }] },
     { role: 'model', parts: [{ text: "Tactical Assistant systems online. Ready for mission briefing. How can I assist your SSB preparation today?" }] },
-    ...history.map(msg => ({
+    ...history.slice(-6).map(msg => ({
       role: msg.sender === 'user' ? 'user' : 'model',
       parts: [{ text: msg.text }]
     })),

@@ -36,44 +36,46 @@ export default function EvaluationReport() {
   }
 
   return (
-    <div className="flex-grow flex flex-col p-4 max-w-7xl mx-auto w-full py-8 gap-10">
+    <div className="flex-grow flex flex-col p-3 md:p-6 max-w-7xl mx-auto w-full py-6 md:py-10 gap-6 md:gap-10">
       
       {/* Absolute Head Block */}
-      <div className="glass-panel p-10 flex flex-col md:flex-row justify-between items-center bg-slate-900/60 border-l-8 border-primary relative overflow-hidden backdrop-blur-2xl">
-         <div className="absolute top-[-50%] right-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
-         <div className="flex flex-col gap-3 relative z-10">
-           <div className="flex items-center gap-2">
-             <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-             <span className="text-secondary font-black tracking-widest text-xs uppercase">Analysis Finalized & Decrypted</span>
+      <div className="glass-panel p-6 md:p-10 flex flex-col md:flex-row justify-between items-center bg-slate-900/60 border-l-4 md:border-l-8 border-primary relative overflow-hidden backdrop-blur-2xl">
+         <div className="absolute top-[-50%] right-[-10%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
+         <div className="flex flex-col gap-2 md:gap-3 relative z-10 text-center md:text-left">
+           <div className="flex items-center justify-center md:justify-start gap-2">
+             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></div>
+             <span className="text-secondary font-black tracking-widest text-[10px] uppercase">Analysis Finalized & Decrypted</span>
            </div>
-           <h1 className="text-4xl font-black text-white tracking-tight">{testName} <span className="text-primary">Performance Briefing</span></h1>
-           <p className="text-textSecondary flex items-center gap-2 text-sm italic">
-             <Database className="w-4 h-4 text-emerald-500" /> Tactical metrics synchronized with Spring Boot Command Center
+           <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+             {testName} <br className="md:hidden" /><span className="text-primary">Performance Briefing</span>
+           </h1>
+           <p className="text-textSecondary flex items-center justify-center md:justify-start gap-2 text-xs md:text-sm italic">
+             <Database className="w-3 h-3 md:w-4 md:h-4 text-emerald-500" /> Tactical metrics synchronized
            </p>
          </div>
 
-         <div className="mt-8 md:mt-0 flex flex-col items-center justify-center px-12 py-8 bg-surface/40 border border-white/5 rounded-3xl relative z-10 shadow-2xl backdrop-blur-md group">
-           <span className="text-textSecondary uppercase text-[10px] font-black tracking-[0.3em] mb-3 group-hover:text-primary transition-colors">Combat Readiness Rating</span>
-           <div className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-primary to-accent">
-             {score_out_of_10} <span className="text-xl text-textSecondary font-medium">/ 10</span>
+         <div className="mt-6 md:mt-0 flex flex-col items-center justify-center px-8 md:px-12 py-6 md:py-8 bg-surface/40 border border-white/5 rounded-3xl relative z-10 shadow-2xl backdrop-blur-md group">
+           <span className="text-textSecondary uppercase text-[8px] md:text-[10px] font-black tracking-[0.3em] mb-2 md:mb-3 group-hover:text-primary transition-colors text-center">Readiness Rating</span>
+           <div className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white via-primary to-accent">
+             {score_out_of_10} <span className="text-lg md:text-xl text-textSecondary font-medium">/ 10</span>
            </div>
          </div>
       </div>
 
       {/* Persona Assessment Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
          {[
-            { icon: <Brain className="w-7 h-7" />, title: 'Psychology Board', label: 'Strict Persona Assessment', color: 'purple', data: feedback_psych },
-            { icon: <Shield className="w-7 h-7" />, title: 'GTO Evaluation', label: 'Practical Logic Assessment', color: 'emerald', data: feedback_gto },
-            { icon: <Crosshair className="w-7 h-7" />, title: 'Interviewing Officer', label: 'Personality Integrity Check', color: 'amber', data: feedback_io }
+            { icon: <Brain className="w-6 h-6 md:w-7 md:h-7" />, title: 'Psychology Board', label: 'Strict Persona Assessment', color: 'purple', data: feedback_psych },
+            { icon: <Shield className="w-6 h-6 md:w-7 md:h-7" />, title: 'GTO Evaluation', label: 'Practical Logic Assessment', color: 'emerald', data: feedback_gto },
+            { icon: <Crosshair className="w-6 h-6 md:w-7 md:h-7" />, title: 'Interviewing Officer', label: 'Personality Integrity Check', color: 'amber', data: feedback_io }
          ].map((persona, i) => (
-            <div key={i} className={`glass-panel p-8 flex flex-col border-t-4 border-${persona.color}-500 hover:shadow-2xl hover:shadow-${persona.color}-500/10 transition-all duration-500 group relative grayscale hover:grayscale-0`}>
-               <div className={`w-14 h-14 bg-${persona.color}-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+            <div key={i} className={`glass-panel p-6 md:p-8 flex flex-col border-t-4 border-${persona.color}-500 hover:shadow-2xl hover:shadow-${persona.color}-500/10 transition-all duration-500 group relative grayscale hover:grayscale-0`}>
+               <div className={`w-12 h-12 md:w-14 md:h-14 bg-${persona.color}-500/10 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform`}>
                   <div className={`text-${persona.color}-400`}>{persona.icon}</div>
                </div>
-               <h3 className="text-2xl font-black text-white mb-1 group-hover:text-primary transition-colors">{persona.title}</h3>
-               <p className={`text-[10px] text-${persona.color}-400 uppercase tracking-[0.2em] font-black mb-6`}>{persona.label}</p>
-               <p className="text-textSecondary leading-relaxed flex-grow text-lg italic">"{persona.data}"</p>
+               <h3 className="text-xl md:text-2xl font-black text-white mb-1 group-hover:text-primary transition-colors">{persona.title}</h3>
+               <p className={`text-[9px] md:text-[10px] text-${persona.color}-400 uppercase tracking-[0.2em] font-black mb-4 md:mb-6`}>{persona.label}</p>
+               <p className="text-textSecondary leading-relaxed flex-grow text-base md:text-lg italic">"{persona.data}"</p>
                <div className={`absolute bottom-0 right-0 p-4 opacity-5 text-${persona.color}-400`}>{persona.icon}</div>
             </div>
          ))}

@@ -18,6 +18,7 @@ import GpeTest from './pages/GpeTest'
 import ArchivalReport from './pages/ArchivalReport'
 import ArchivePage from './pages/Archive'
 import GdTest from './pages/GdTest'
+import CurrentAffairs from './pages/CurrentAffairs'
 
 function AppContent() {
   const location = useLocation();
@@ -33,7 +34,7 @@ function AppContent() {
       )}
 
       <Navbar />
-      <main className={`flex-grow z-10 flex flex-col ${isAuthPage ? '' : 'p-6'}`}>
+      <main className={`flex-grow z-10 flex flex-col ${isAuthPage ? '' : 'p-4 md:p-6'}`}>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -49,6 +50,7 @@ function AppContent() {
           <Route path="/test/lecturette" element={<LecturetteTest />} />
           <Route path="/test/gpe" element={<GpeTest />} />
           <Route path="/test/gd" element={<GdTest />} />
+          <Route path="/current-affairs" element={<CurrentAffairs />} />
           <Route path="/report" element={<EvaluationReport />} />
           <Route path="/archive" element={<ArchivePage />} />
           <Route path="/" element={<Login />} />

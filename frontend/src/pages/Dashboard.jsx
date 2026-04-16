@@ -107,6 +107,16 @@ const SSB_DAYS = [
           </svg>
         ),
       },
+      {
+        id: 'current_affairs', label: 'CURRENT AFFAIRS', title: 'Current Affairs',
+        desc: 'Daily News · Defence Updates · AI Trends · SSB Study Material',
+        path: '/current-affairs', color: '#0ea5e9', badge: 'Awareness', primary: true,
+        icon: (
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
+          </svg>
+        ),
+      },
     ],
   },
   {
@@ -244,39 +254,39 @@ export default function Dashboard() {
 
       {/* ── Removed Background Design ── */}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-10 pb-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pt-6 md:pt-10 pb-20">
 
-        <div className="flex flex-col lg:flex-row items-stretch justify-between gap-8 mb-16">
+        <div className="flex flex-col lg:flex-row items-stretch justify-between gap-8 mb-12 lg:mb-16">
           <div className="flex-1">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em] uppercase mb-4"
               style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', color: '#6ee7b7' }}>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               Operational Status: Active
             </div>
-            <h1 className="text-6xl font-black text-white tracking-tighter leading-[0.9] mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[0.9] mb-4">
               Welcome<br />
               <span style={{ background: 'linear-gradient(135deg, #fbbf24, #10b981, #047857)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 {userData?.name ? userData.name.toUpperCase() : 'CADET'}
               </span>
             </h1>
-            <p className="text-slate-400 max-w-md font-medium leading-relaxed border-l-2 border-emerald-500/30 pl-4 mt-6">
+            <p className="text-slate-400 max-w-md font-medium text-sm md:text-base leading-relaxed border-l-2 border-emerald-500/30 pl-4 mt-6">
               Your mission is consistency. Every test logged brings you closer to commissioning as an officer.
             </p>
           </div>
 
           {/* Tactical Overview Dashboard */}
-          <div className="lg:w-[500px] flex flex-col gap-4">
+          <div className="w-full lg:w-[500px] flex flex-col gap-4">
             <div className="p-1 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600 flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-slate-700" /> Tactical Overview
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Metric 1: Total Active Days */}
-              <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-5 relative group transition-all hover:bg-white/[0.05] overflow-hidden">
+              <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 md:p-5 relative group transition-all hover:bg-white/[0.05] overflow-hidden">
                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">🔥</div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-1">Total Active Days</span>
                 <div className="flex items-end gap-2">
-                  <span className="text-4xl font-black text-white">{dashboardData.active_days}</span>
+                  <span className="text-3xl md:text-4xl font-black text-white">{dashboardData.active_days}</span>
                   <div className="flex flex-col mb-1">
                     <span className="text-[10px] font-black text-orange-500 uppercase leading-none">{dashboardData.streak || 0}-Day Streak</span>
                     <div className="flex gap-0.5 mt-1">
@@ -289,34 +299,34 @@ export default function Dashboard() {
               </div>
 
               {/* Metric 2: Tests */}
-              <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-5 relative group transition-all hover:bg-white/[0.05] overflow-hidden">
+              <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 md:p-5 relative group transition-all hover:bg-white/[0.05] overflow-hidden">
                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">📊</div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-1">Tests Logged</span>
                 <div className="flex items-end gap-2">
-                  <span className="text-4xl font-black text-white">{testsLogged}</span>
+                  <span className="text-3xl md:text-4xl font-black text-white">{testsLogged}</span>
                   <span className="text-[10px] font-black text-indigo-400 uppercase mb-1 leading-none tracking-widest">Units</span>
                 </div>
               </div>
 
               {/* Metric 3: Score */}
-              <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-5 relative group transition-all hover:bg-white/[0.05] overflow-hidden">
+              <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-4 md:p-5 relative group transition-all hover:bg-white/[0.05] overflow-hidden">
                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">🎯</div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-1">Avg Score</span>
                 <div className="flex items-end gap-2">
-                  <span className="text-4xl font-black text-white">{avgScore}</span>
+                  <span className="text-3xl md:text-4xl font-black text-white">{avgScore}</span>
                   <span className="text-[10px] font-black text-emerald-400 uppercase mb-1 leading-none tracking-widest">/ 10.0</span>
                 </div>
               </div>
 
               {/* Metric 4: Archive Link */}
               <Link to="/archive"
-                className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-5 flex flex-col justify-between group transition-all hover:bg-emerald-500/20 hover:border-emerald-500/40 text-left relative overflow-hidden">
+                className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4 md:p-5 flex flex-col justify-between group transition-all hover:bg-emerald-500/20 hover:border-emerald-500/40 text-left relative overflow-hidden min-h-[100px]">
                 <div className="absolute top-2 right-2 p-1 text-emerald-500 opacity-20 group-hover:opacity-100 transition-all group-hover:rotate-12">
                   <Calendar className="w-8 h-8" />
                 </div>
                 <span className="text-[10px] font-black uppercase tracking-widest text-emerald-400 block mb-1">Mission Log</span>
                 <div>
-                  <span className="text-2xl font-black text-white block">Archive</span>
+                  <span className="text-xl md:text-2xl font-black text-white block">Archive</span>
                   <span className="text-[10px] font-bold text-emerald-500/60 uppercase tracking-widest">Training History →</span>
                 </div>
               </Link>
