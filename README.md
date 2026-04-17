@@ -314,6 +314,7 @@ ssb-training-system/
 │   │   ├── index.css                # Global styles
 │   │   ├── components/
 │   │   │   └── Navbar.jsx           # Navigation bar
+│   │   │   └── AIChatAssistant.jsx  # Floating Tactical AI Assistant
 │   │   ├── pages/
 │   │   │   ├── Login.jsx            # Authentication (premium UI)
 │   │   │   ├── Register.jsx         # User registration
@@ -332,6 +333,7 @@ ssb-training-system/
 │   │   │   ├── EvaluationReport.jsx # Detailed AI report view
 │   │   │   ├── Archive.jsx          # Historical records browser
 │   │   │   └── ArchivalReport.jsx   # Date-wise report view
+│   │   │   └── CurrentAffairs.jsx   # Daily defense news and updates
 │   │   ├── services/
 │   │   │   └── aiService.js         # Gemini AI integration
 │   │   └── utils/                   # Helper utilities
