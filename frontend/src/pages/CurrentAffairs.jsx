@@ -198,9 +198,85 @@ const STUDY_MATERIALS = [
   },
 ];
 
+const KEY_OFFICIALS = [
+  {
+    id: 1,
+    role: 'President of India',
+    name: 'Smt. Droupadi Murmu',
+    extra: 'Supreme Commander of the Armed Forces',
+    category: 'Government',
+    color: '#f43f5e',
+    icon: '🇮🇳'
+  },
+  {
+    id: 2,
+    role: 'Prime Minister of India',
+    name: 'Shri Narendra Modi',
+    extra: 'Head of Government',
+    category: 'Government',
+    color: '#eab308',
+    icon: '🇮🇳'
+  },
+  {
+    id: 3,
+    role: 'Defence Minister',
+    name: 'Shri Rajnath Singh',
+    extra: 'Ministry of Defence',
+    category: 'Ministry',
+    color: '#10b981',
+    icon: '🛡️'
+  },
+  {
+    id: 4,
+    role: 'National Security Advisor',
+    name: 'Shri Ajit Doval',
+    extra: 'NSA',
+    category: 'Security',
+    color: '#a855f7',
+    icon: '🕵️'
+  },
+  {
+    id: 5,
+    role: 'Chief of Defence Staff',
+    name: 'Gen. Anil Chauhan',
+    extra: 'CDS',
+    category: 'Military',
+    color: '#f97316',
+    icon: '⚔️'
+  },
+  {
+    id: 6,
+    role: 'Chief of Army Staff',
+    name: 'Gen. Upendra Dwivedi',
+    extra: 'COAS',
+    category: 'Army',
+    color: '#4ade80',
+    icon: '⛰️'
+  },
+  {
+    id: 7,
+    role: 'Chief of Naval Staff',
+    name: 'Adm. Dinesh K Tripathi',
+    extra: 'CNS',
+    category: 'Navy',
+    color: '#38bdf8',
+    icon: '⚓'
+  },
+  {
+    id: 8,
+    role: 'Chief of Air Staff',
+    name: 'Air Chief Marshal AP Singh',
+    extra: 'CAS',
+    category: 'Air Force',
+    color: '#818cf8',
+    icon: '✈️'
+  }
+];
+
 const TABS = [
   { id: 'news', label: 'Daily News', icon: '📡' },
   { id: 'defence', label: 'Defence Updates', icon: '🛡️' },
+  { id: 'officers', label: 'Current Officers', icon: '🎖️' },
   { id: 'ai', label: 'AI & Tech', icon: '🧠' },
   { id: 'study', label: 'Study Materials', icon: '📚' },
 ];
@@ -361,6 +437,48 @@ function StudyCard({ item }) {
   );
 }
 
+function OfficialCard({ item }) {
+  return (
+    <div
+      className="rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-0.5 group flex flex-col h-full"
+      style={{
+        background: 'rgba(16, 26, 17, 0.8)',
+        border: '1px solid rgba(255,255,255,0.07)',
+      }}
+      onMouseEnter={e => e.currentTarget.style.borderColor = `${item.color}50`}
+      onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
+    >
+      <div className="h-0.5 w-full" style={{ background: `linear-gradient(to right, ${item.color}, transparent)` }} />
+      <div className="p-5 flex items-start gap-4 flex-grow">
+        <div className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-2xl" style={{ border: `1px solid ${item.color}30`, background: `linear-gradient(135deg, ${item.color}15, rgba(0,0,0,0))` }}>
+          {item.icon}
+        </div>
+        <div className="flex flex-col h-full">
+          <div>
+            <span
+              className="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full inline-block mb-2"
+              style={{ color: item.color, border: `1px solid ${item.color}40`, background: `${item.color}15` }}
+            >
+              {item.category}
+            </span>
+            <h3 className="text-sm font-bold leading-snug mb-1 group-hover:opacity-90 transition-opacity" style={{ color: item.color }}>
+              {item.name}
+            </h3>
+            <p className="text-white font-bold text-sm">
+              {item.role}
+            </p>
+          </div>
+          <div className="mt-auto pt-2">
+            <p className="text-xs text-slate-400 font-medium">
+              {item.extra}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Page ───────────────────────────────────────────────────────────────
 
 import { useEffect } from 'react';
@@ -381,12 +499,12 @@ export default function CurrentAffairs() {
       try {
         const res = await axios.get('/api/current-affairs');
         const data = res.data;
-        
+
         setNews(data.filter(i => i.category === 'news'));
         setDefence(data.filter(i => i.category === 'defence'));
         setAiTrends(data.filter(i => i.category === 'ai'));
         setStudy(data.filter(i => i.category === 'study'));
-        
+
       } catch (err) {
         console.error("Failed to fetch current affairs:", err);
       } finally {
@@ -397,7 +515,7 @@ export default function CurrentAffairs() {
   }, []);
 
   if (loading) {
-      return <div className="min-h-screen flex items-center justify-center bg-[#06120b] text-sky-400 font-black tracking-widest uppercase">Fetching Intelligence Feed...</div>;
+    return <div className="min-h-screen flex items-center justify-center bg-[#06120b] text-sky-400 font-black tracking-widest uppercase">Fetching Intelligence Feed...</div>;
   }
 
   return (
@@ -480,6 +598,24 @@ export default function CurrentAffairs() {
             </div>
             <div className="mt-6 p-4 rounded-xl text-center text-xs text-slate-500" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
               📡 News cards link directly to the source publication. Always verify from official sources.
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'officers' && (
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-1 h-6 rounded-full" style={{ background: 'linear-gradient(to bottom, #f43f5e, #eab308)' }} />
+              <h2 className="text-lg font-black text-white tracking-tight">Key Officials & Dignitaries</h2>
+              <span className="text-[10px] font-bold text-rose-400 uppercase tracking-widest px-2 py-0.5 rounded-full" style={{ background: 'rgba(244,63,94,0.1)', border: '1px solid rgba(244,63,94,0.2)' }}>
+                {KEY_OFFICIALS.length} Profiles
+              </span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {KEY_OFFICIALS.map(item => <OfficialCard key={item.id} item={item} />)}
+            </div>
+            <div className="mt-6 p-4 rounded-xl text-center text-xs text-slate-500" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+              🎖️ Knowing these key figures is essential for Personal Interview (PI) and General Awareness topics in the SSB.
             </div>
           </div>
         )}
